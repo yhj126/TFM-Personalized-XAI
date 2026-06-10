@@ -2,3 +2,5 @@
 .venv
 
 base_de_casos/cbr_case_base_outputs
+
+imagenes/output*
