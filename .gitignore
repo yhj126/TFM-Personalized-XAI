@@ -2,7 +2,6 @@
 .venv
 .DS_Store
 
-base_de_casos/cbr_case_base_outputs
 base_de_casos/Estudio sobre explicaciones de IA en clasificación de imágenes (XAI)  (respuestas).xlsx
 
 imagenes/output*
