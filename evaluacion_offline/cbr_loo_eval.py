@@ -17,8 +17,10 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
-DEFAULT_DATASET = Path("../base_de_casos/cbr_case_base_outputs/case_base_double_full.csv")
-DEFAULT_OUTPUT_DIR = Path("../base_de_casos/cbr_similarity_outputs")
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+DEFAULT_DATASET = PROJECT_ROOT / "base_de_casos/cbr_case_base_outputs/case_base_double_full.csv"
+DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "base_de_casos/cbr_similarity_outputs"
 DEFAULT_IMAGE_SIMILARITY = DEFAULT_OUTPUT_DIR / "image_ssim_by_id.csv"
 GROUP_COL = "image_id"
 
@@ -139,9 +141,10 @@ def build_profile_preprocessor() -> ColumnTransformer:
     )
 
 
-def build_image_metadata_preprocessor() -> ColumnTransformer:
+def build_image_metadata_preprocessor(columns: list[str] | None = None) -> ColumnTransformer:
     """Construye el preprocesador de metadatos de imagen si no hay SSIM."""
 
+    selected_columns = columns or PROBLEM_IMAGE_CATEGORICAL
     return ColumnTransformer(
         transformers=[
             (
@@ -152,7 +155,7 @@ def build_image_metadata_preprocessor() -> ColumnTransformer:
                         ("ohe", OneHotEncoder(handle_unknown="ignore")),
                     ]
                 ),
-                PROBLEM_IMAGE_CATEGORICAL,
+                selected_columns,
             ),
         ],
         sparse_threshold=1.0,
@@ -260,9 +263,17 @@ def _image_similarity(
             image_similarity,
         )
 
-    preprocessor = build_image_metadata_preprocessor()
-    train_x = preprocessor.fit_transform(train_df[PROBLEM_IMAGE_CATEGORICAL])
-    query_x = preprocessor.transform(query_df[PROBLEM_IMAGE_CATEGORICAL])
+    available_columns = [
+        col
+        for col in PROBLEM_IMAGE_CATEGORICAL
+        if col in train_df.columns and train_df[col].notna().any()
+    ]
+    if not available_columns:
+        return None
+
+    preprocessor = build_image_metadata_preprocessor(available_columns)
+    train_x = preprocessor.fit_transform(train_df[available_columns])
+    query_x = preprocessor.transform(query_df[available_columns])
     return _safe_cosine_similarity(query_x, train_x)
 
 
@@ -379,7 +390,7 @@ def jaccard_score(true_value: Any, pred_value: Any) -> float:
     return len(true_set & pred_set) / len(true_set | pred_set)
 
 
-def leave_one_image_out_clean(
+def leave_one_out_clean(
     df: pd.DataFrame,
     k: int = 7,
     exclude_same_user: bool = True,
@@ -387,7 +398,7 @@ def leave_one_image_out_clean(
     image_similarity_path: Path | None = DEFAULT_IMAGE_SIMILARITY,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """
-    Ejecuta validación Leave-One-Image-Out limpia.
+    Ejecuta validación Leave-One-Out limpia.
 
     La similitud se calcula por bloques usando únicamente PROBLEM_FEATURES.
     Los campos de SOLUTION_FIELDS se usan solo como solución a predecir/evaluar.
@@ -571,7 +582,7 @@ def run_k_sensitivity(
     rows: list[dict[str, Any]] = []
 
     for k in k_values:
-        _, _, _, metrics_df = leave_one_image_out_clean(
+        _, _, _, metrics_df = leave_one_out_clean(
             df,
             k=k,
             exclude_same_user=exclude_same_user,
@@ -621,7 +632,7 @@ def parse_k_grid(raw: str) -> list[int]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Evaluación CBR Leave-One-Image-Out sin usar columnas de solución "
+            "Evaluación CBR Leave-One-Out sin usar columnas de solución "
             "en la similitud."
         )
     )
@@ -662,7 +673,7 @@ def main() -> None:
 
     exclude_same_user = not args.include_same_user
 
-    folds_df, preds_df, neighbors_df, metrics_df = leave_one_image_out_clean(
+    folds_df, preds_df, neighbors_df, metrics_df = leave_one_out_clean(
         df,
         k=args.k,
         exclude_same_user=exclude_same_user,
@@ -672,12 +683,12 @@ def main() -> None:
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
-    folds_path = args.output_dir / "cbr_loio_clean_folds.csv"
-    preds_path = args.output_dir / "cbr_loio_clean_predictions.csv"
-    neighbors_path = args.output_dir / "cbr_loio_clean_neighbors.csv"
-    metrics_path = args.output_dir / "cbr_loio_clean_metrics_by_field.csv"
-    summary_path = args.output_dir / "cbr_loio_clean_summary.csv"
-    k_sensitivity_path = args.output_dir / "cbr_loio_clean_k_sensitivity.csv"
+    folds_path = args.output_dir / "cbr_loo_clean_folds.csv"
+    preds_path = args.output_dir / "cbr_loo_clean_predictions.csv"
+    neighbors_path = args.output_dir / "cbr_loo_clean_neighbors.csv"
+    metrics_path = args.output_dir / "cbr_loo_clean_metrics_by_field.csv"
+    summary_path = args.output_dir / "cbr_loo_clean_summary.csv"
+    k_sensitivity_path = args.output_dir / "cbr_loo_clean_k_sensitivity.csv"
 
     folds_df.to_csv(folds_path, index=False)
     preds_df.to_csv(preds_path, index=False)
@@ -723,7 +734,7 @@ def main() -> None:
     else:
         k_sensitivity_df = pd.DataFrame()
 
-    print("=== Leave-One-Image-Out limpio ===")
+    print("=== Leave-One-Out limpio ===")
     print(f"Dataset: {args.dataset}")
     print(f"Pesos por bloque: {BLOCK_WEIGHTS}")
     print(f"Similitud visual: {args.image_similarity}")

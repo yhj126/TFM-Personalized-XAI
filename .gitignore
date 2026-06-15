@@ -5,3 +5,5 @@
 base_de_casos/Estudio sobre explicaciones de IA en clasificación de imágenes (XAI)  (respuestas).xlsx
 
 imagenes/output*
+evaluacion_online/__pycache__
+evaluacion_offline/__pycache__
