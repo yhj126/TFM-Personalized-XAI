@@ -898,6 +898,8 @@ def save_result(result: PipelineResult, output_dir: Path) -> Path:
             return [make_json_safe(item) for item in value]
         if isinstance(value, tuple):
             return [make_json_safe(item) for item in value]
+        if isinstance(value, Path):
+            return str(value)
         if isinstance(value, np.integer):
             return int(value)
         if isinstance(value, np.floating):
