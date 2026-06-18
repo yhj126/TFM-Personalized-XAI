@@ -355,11 +355,8 @@ similares.
 
 ## Licencia
 
-Este proyecto se distribuye bajo la licencia Creative Commons Attribution 4.0
-International (CC BY 4.0).
+El código fuente desarrollado específicamente para este Trabajo de Fin de Máster se distribuye bajo licencia MIT. Puede consultarse el texto completo en el archivo `LICENSE`.
 
-Puedes compartir, copiar, redistribuir, adaptar y reutilizar el material del
-proyecto, siempre que se cite adecuadamente al autor.
+La memoria, documentación, tablas, resultados propios y material textual generado para el proyecto se distribuyen bajo licencia Creative Commons Attribution 4.0 International (CC BY 4.0). Puede consultarse más información en el archivo `LICENSE-DOCS.md`.
 
-Las imágenes, datasets, modelos o recursos externos utilizados mantienen sus
-licencias originales.
+Las imágenes, datasets, modelos, librerías y recursos externos utilizados mantienen sus licencias originales.
