@@ -1,5 +1,5 @@
 def main():
-    print("Hello from tfm-personalized-xai!")
+    print("TFM Personalized XAI")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,19 @@
+interaction_id,demo_run_id,selector_id,image_label,model_predicted_class,n_attempts,first_method,final_method,accepted_final,final_rating,final_acceptance,final_satisfaction,final_confidence,final_understanding,max_iteration,method_changed
+1::aguila_0031229b7741a1d7,1,aguila_0031229b7741a1d7,Imagen prueba 3 de 3,Aguila,2,saliency,gradcam,True,4.0,4.0,4.0,3.0,3.0,2,True
+1::vaca_00e6ccb5516d6bdf,1,vaca_00e6ccb5516d6bdf,Imagen prueba 1 de 3,Buey,1,gradcam,gradcam,True,5.0,5.0,5.0,5.0,5.0,1,False
+1::wallaby_008fb78fa0fd8744,1,wallaby_008fb78fa0fd8744,Imagen prueba 2 de 3,Wallaby,1,gradcam,gradcam,True,4.0,5.0,4.0,4.0,3.0,1,False
+2::aguila_0031229b7741a1d7,2,aguila_0031229b7741a1d7,Imagen prueba 3 de 3,Aguila,2,gradcam,saliency,True,4.0,3.0,4.0,5.0,4.0,2,True
+2::vaca_00e6ccb5516d6bdf,2,vaca_00e6ccb5516d6bdf,Imagen prueba 1 de 3,Buey,1,gradcam,gradcam,True,4.0,5.0,5.0,4.0,3.0,1,False
+2::wallaby_008fb78fa0fd8744,2,wallaby_008fb78fa0fd8744,Imagen prueba 2 de 3,Wallaby,3,gradcam,saliency,True,3.0,3.0,3.0,4.0,3.0,3,True
+3::aguila_0031229b7741a1d7,3,aguila_0031229b7741a1d7,Imagen prueba 3 de 3,Aguila,1,gradcam,gradcam,True,4.0,5.0,5.0,3.0,2.0,1,False
+3::vaca_00e6ccb5516d6bdf,3,vaca_00e6ccb5516d6bdf,Imagen prueba 1 de 3,Buey,1,gradcam,gradcam,True,4.0,4.0,5.0,3.0,5.0,1,False
+3::wallaby_008fb78fa0fd8744,3,wallaby_008fb78fa0fd8744,Imagen prueba 2 de 3,Wallaby,1,gradcam,gradcam,True,5.0,5.0,5.0,5.0,4.0,1,False
+4::aguila_0031229b7741a1d7,4,aguila_0031229b7741a1d7,Imagen prueba 3 de 3,Aguila,5,gradcam,saliency,True,3.0,3.0,3.0,2.0,3.0,3,True
+4::vaca_00e6ccb5516d6bdf,4,vaca_00e6ccb5516d6bdf,Imagen prueba 1 de 3,Buey,2,gradcam,gradcam,True,5.0,5.0,5.0,5.0,4.0,1,False
+4::wallaby_008fb78fa0fd8744,4,wallaby_008fb78fa0fd8744,Imagen prueba 2 de 3,Wallaby,2,gradcam,gradcam,True,5.0,5.0,5.0,5.0,4.0,1,False
+5::aguila_0031229b7741a1d7,5,aguila_0031229b7741a1d7,Imagen prueba 3 de 3,Aguila,3,gradcam,anchor,True,2.0,2.0,3.0,2.0,2.0,2,True
+5::vaca_00e6ccb5516d6bdf,5,vaca_00e6ccb5516d6bdf,Imagen prueba 1 de 3,Buey,4,gradcam,gradcam,True,4.0,4.0,4.0,4.0,4.0,3,False
+5::wallaby_008fb78fa0fd8744,5,wallaby_008fb78fa0fd8744,Imagen prueba 2 de 3,Wallaby,5,gradcam,gradcam,True,4.0,4.0,4.0,4.0,4.0,4,False
+6::aguila_0031229b7741a1d7,6,aguila_0031229b7741a1d7,Imagen prueba 3 de 3,Aguila,7,gradcam,gradcam,True,4.0,5.0,4.0,5.0,4.0,4,False
+6::vaca_00e6ccb5516d6bdf,6,vaca_00e6ccb5516d6bdf,Imagen prueba 1 de 3,Buey,7,gradcam,anchor,True,4.0,4.0,3.0,3.0,4.0,3,True
+6::wallaby_008fb78fa0fd8744,6,wallaby_008fb78fa0fd8744,Imagen prueba 2 de 3,Wallaby,4,gradcam,gradcam,True,4.0,4.0,4.0,4.0,4.0,1,False

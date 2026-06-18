@@ -1,0 +1,13 @@
+metric,value
+n_attempts_total,52.0
+n_demo_runs_inferred,6.0
+n_final_interactions,18.0
+initial_acceptance_rate,0.667
+final_acceptance_rate,1.0
+mean_iterations_per_interaction,1.944
+mean_rating_final_accepted,3.889
+mean_acceptance_final_accepted,4.0
+mean_satisfaction_final_accepted,4.0
+mean_confidence_final_accepted,3.611
+mean_understanding_final_accepted,3.5
+mean_neighbor_similarity_attempts,0.601

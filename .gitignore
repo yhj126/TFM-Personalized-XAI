@@ -7,3 +7,5 @@ base_de_casos/Estudio sobre explicaciones de IA en clasificación de imágenes (
 imagenes/output*
 evaluacion_online/__pycache__
 evaluacion_offline/__pycache__
+.DS_Store
+evaluacion_online/analisis_demo_usuario_final_3_imagenes.ipynb
