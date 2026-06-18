@@ -4,6 +4,7 @@ Sistema experimental para generar explicaciones XAI personalizadas en clasificac
 de imágenes. El proyecto combina visualizaciones explicables, una base de casos
 con respuestas de usuarios, recuperación basada en casos (CBR) y un LLM local para
 redactar explicaciones adaptadas al perfil de cada usuario.
+
 Titulo: Generación de explicaciones personalizadas en clasificación de imágenes mediante LLMs y CBR
 Autor: Haojie Yin  
 Trabajo de Fin de Máster en Inteligencia Artificial  
